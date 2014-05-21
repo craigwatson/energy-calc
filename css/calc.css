@@ -1,0 +1,9 @@
+.pure-skin-calc { padding: 0px 30px }
+.pad { padding-right: 10px }
+.footer { text-align: center; font-size: 87.5%; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-top: 3.4286em; padding: 1.1429em; background: rgb(250, 250, 250);}
+.footer a { text-decoration: none; color: #000; font-weight: bold }
+.footer a:hover{ text-decoration: underline }
+hr { border: 0; width: 80%; height: 1px; background-color: #eee}
+.info { text-align: center; border-style: dashed; border-width: 1px; padding: 5px 0px; margin: 10px 0px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; -khtml-border-radius: 10px;}
+.green { background-color: #9EFFB6; color: #0A7323; border-color: #0A7323; }
+.red { background-color: #FF9494; color: #8C0505; border-color: #8C0505; }

@@ -28,7 +28,7 @@
             <legend>Meter Type</legend>
              <div class="pure-control-group">
               <label for="meter-type">Meter Type</label>
-              <select id="meter-type">
+              <select id="meter-type" class="meter-update">
                 <option value="single">Single Meter</option>
                 <option value="e7">Economy 7 (Dual Meter)</option>
               </select>
@@ -39,16 +39,16 @@
           <fieldset class="single-field">
             <legend>Single Meter</legend>
             <div class="pure-control-group">
-              <label for="start-reading">Start</label>
-              <input type="text" class="pure-input-rounded" id="start-reading" />
+              <label for="single-start-reading">Start</label>
+              <input type="text" class="meter-update pure-input-rounded" id="single-start-reading" />
             </div>
             <div class="pure-control-group">
-              <label for="end-reading">End</label>
-              <input type="text" class="pure-input-rounded" id="end-reading" />
+              <label for="single-end-reading">End</label>
+              <input type="text" class="meter-update pure-input-rounded" id="single-end-reading" />
             </div>
             <div class="pure-control-group">
-              <label for="end-reading">Unit Rate (pence)</label>
-              <input type="text" class="pure-input-rounded" id="single-meter-rate" />
+              <label for="single-unit-price">Unit Rate (pence)</label>
+              <input type="text" class="meter-update pure-input-rounded" id="single-unit-price" />
             </div>
           </fieldset>
 
@@ -56,31 +56,33 @@
             <legend>Economy 7 (Dual Meter)</legend>
             <div class="pure-control-group">
               <label for="e7-day-start-reading">Day Start</label>
-              <input type="text" class="pure-input-rounded" id="e7-day-start-reading" />
+              <input type="text" class="meter-update pure-input-rounded" id="e7-day-start-reading" />
             </div>
             <div class="pure-control-group">
               <label for="e7-day-end-reading">Day End</label>
-              <input type="text" class="pure-input-rounded" id="e7-day-end-reading" />
+              <input type="text" class="meter-update pure-input-rounded" id="e7-day-end-reading" />
             </div>
             <div class="pure-control-group">
               <label for="e7-day-rate">Day Unit Rate (pence)</label>
-              <input type="text" class="pure-input-rounded" id="e7-day-rate" />
+              <input type="text" class="meter-update pure-input-rounded" id="e7-day-unit-price" />
             </div>
             <hr />
             <div class="pure-control-group">
               <label for="e7-night-start-reading">Night Start</label>
-              <input type="text" class="pure-input-rounded" id="e7-night-start-reading" />
+              <input type="text" class="meter-update pure-input-rounded" id="e7-night-start-reading" />
             </div>
             <div class="pure-control-group">
               <label for="e7-night-end-reading">Night End</label>
-              <input type="text" class="pure-input-rounded" id="e7-night-end-reading" />
+              <input type="text" class="meter-update pure-input-rounded" id="e7-night-end-reading" />
             </div>
             <div class="pure-control-group">
-              <label for="e7-night-rate">Night Unit Rate (pence)</label>
-              <input type="text" class="pure-input-rounded" id="e7-night-rate" />
+              <label for="e7-night-unit-price">Night Unit Rate (pence)</label>
+              <input type="text" class="meter-update pure-input-rounded" id="e7-night-unit-price" />
             </div>
           </fieldset>
-
+          <div id="single-feedback" class="pure-u-1-1 info"></div>
+          <div id="e7-day-feedback" class="pure-u-1-1 info"></div>
+          <div id="e7-night-feedback" class="pure-u-1-1 info"></div>
       </div></div>
 
       <div class="pure-u-1-3"><div class="pad">
@@ -88,24 +90,23 @@
           <legend>Standing Charge Calculations</legend>
             <div class="pure-control-group">
               <label for="e7-night-start-reading">Start Date</label>
-              <input type="text" class="pure-input-rounded datepicker" id="start-date" required/>
+              <input type="text" class="sc-update pure-input-rounded datepicker" id="start-date" required/>
             </div>
             <div class="pure-control-group">
               <label for="e7-night-end-reading">End Date</label>
-              <input type="text" class="pure-input-rounded datepicker" id="end-date" />
+              <input type="text" class="sc-update pure-input-rounded datepicker" id="end-date" />
             </div>
             <div class="pure-control-group">
               <label for="daily-standing-charge">Daily Charge (pence)</label>
-              <input type="text" placeholder="0" class="pure-input-rounded" id="daily-standing-charge" />
+              <input type="text" placeholder="0" class="sc-update pure-input-rounded" id="daily-standing-charge" />
             </div>
           <div id="date-feedback" class="pure-u-1-1 info"></div>
-
           </fieldset>
       </div></div>
 
       <div class="pure-u-1-3"><div class="pad">
         <fieldset id="calculations-fields">
-          <legend>Totals</legend>
+          <legend>Totals (in &pound;)</legend>
           <div class="pure-control-group">
             <label for="number-of-days">Number of Days</label>
             <input type="text" placeholder="0" id="number-of-days" readonly />
@@ -114,22 +115,34 @@
             <label for="standing-charge-calculated">Standing Charge</label>
             <input type="text" placeholder="0.00" id="standing-charge-calculated" readonly />
           </div>
-          <div class="pure-control-group single-field" id="single-meter-total">
-            <label for="single-meter-units">Single Meter Units</label>
-            <input type="text" placeholder="0" id="ssingle-meter-units" readonly />
+          <hr class="single-field" />
+          <div class="pure-control-group single-field">
+            <label for="single-units">Units</label>
+            <input type="text" placeholder="0" id="single-units" readonly />
           </div>
-          <div class="pure-control-group single-field" id="single-meter-total">
-            <label for="single-meter-total">Single Meter Energy Charges</label>
+          <div class="pure-control-group single-field">
+            <label for="single-total">Energy Charges</label>
             <input type="text" placeholder="0.00" id="single-total" readonly />
+          </div>
+          <hr class="e7-field" />
+          <div class="pure-control-group e7-field">
+            <label for="e7-meter-day-units">Day Units</label>
+            <input type="text" placeholder="0" id="e7-day-units" readonly />
           </div>
           <div class="pure-control-group e7-field">
             <label for="e7-meter-day-total">Day Energy Charges</label>
-            <input type="text" placeholder="0.00" id="e7-meter-day-total" readonly />
+            <input type="text" placeholder="0.00" id="e7-day-total" readonly />
+          </div>
+          <hr class="e7-field" />
+          <div class="pure-control-group e7-field">
+            <label for="e7-meter-night-units">Day Units</label>
+            <input type="text" placeholder="0" id="e7-night-units" readonly />
           </div>
           <div class="pure-control-group e7-field">
             <label for="e7-meter-night-total">Night Energy Charges</label>
-            <input type="text" placeholder="0.00" id="e7-meter-night-total" readonly />
+            <input type="text" placeholder="0.00" id="e7-night-total" readonly />
           </div>
+          <hr />
           <div class="pure-control-group">
             <label for="grand-total">Grand Total</label>
             <input type="text" placeholder="0.00" id="grand-total" readonly />

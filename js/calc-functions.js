@@ -1,5 +1,45 @@
+function validateReadings(fieldPrefix,errorText) {
+  var startReading = $('#' + fieldPrefix + '-start-reading').val();
+  var endReading = $('#' + fieldPrefix + '-end-reading').val();
+  var unitPrice = $('#' + fieldPrefix + '-unit-price').val();
+  var unitsUsed = endReading - startReading;
+  var totalCharge = ((unitsUsed*unitPrice)/100);
+
+  if (!validateData(startReading,endReading,'#' + fieldPrefix + '-feedback',errorText,'#' + fieldPrefix + '-total')) {
+    return false;
+  }
+
+  $('#' + fieldPrefix + '-units').val(unitsUsed);
+  $('#' + fieldPrefix + '-total').val(totalCharge.toFixed(2));
+  updateTotals();
+}
+
+/* Validates two data points, and updates feedback field and resets a field if not valid */
+function validateData(startValue,endValue,feedbackField,errorText,errorResetField) {
+  /*alert (startValue + ' ' + endValue);*/
+  if ((startValue == 0) || (endValue == 0)) {
+    $(feedbackField).hide();
+    $(feedbackField).removeClass('green');
+    $(feedbackField).removeClass('red');
+    return false;
+  } else if (startValue > endValue) {
+    $(feedbackField).show();
+    $(feedbackField).removeClass('green');
+    $(feedbackField).addClass('red');
+    $(feedbackField).html(errorText);
+    $(errorResetField).val(0);
+    return false;
+  } else {
+    $(feedbackField).hide();
+    $(feedbackField).removeClass('green');
+    $(feedbackField).removeClass('red');
+    return true;
+  }
+}
+
 /* Toggles display of Economy7/Single meter elements */
 function meterToggle() {
+  updateTotals();
   if ($('#meter-type').val() == 'e7') {
     $('.e7-field').show();
     $('.single-field').hide();
@@ -30,4 +70,15 @@ function diffDates(date1,date2) {
   var date2Milliseconds = date2.getTime();
   var diff = date2Milliseconds - date1Milliseconds;
   return Math.round(diff/86400000);
+}
+
+/* Returns a specified form field value as a Float */
+function getValueAsFloat(field) {
+  var fieldValue = $(field).val();
+  var parsed = parseFloat(fieldValue);
+  if (!parsed) {
+    return parseFloat(0);
+  } else {
+    return parsed;
+  }
 }

@@ -31,31 +31,3 @@ function diffDates(date1,date2) {
   var diff = date2Milliseconds - date1Milliseconds;
   return Math.round(diff/86400000);
 }
-
-/* From http://stackoverflow.com/questions/10073699 */
-function pad(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
-
-/* From http://stackoverflow.com/questions/5023901 */
-Number.prototype.formatMoney = function(c, d, t){
-var n = this,
-    c = isNaN(c = Math.abs(c)) ? 2 : c,
-    d = d == undefined ? "." : d,
-    t = t == undefined ? "," : t,
-    s = n < 0 ? "-" : "",
-    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
-    j = (j = i.length) > 3 ? j % 3 : 0;
-   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
- };
-
-/* From http://stackoverflow.com/questions/3885817 */
-function isFloat(n) {
-    return n === +n && n !== (n|0);
-}
-
-function isInteger(n) {
-    return n === +n && n === (n|0);
-}

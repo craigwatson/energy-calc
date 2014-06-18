@@ -19,18 +19,30 @@ $(function() {
 });
 
 function updateTotals() {
+  if ($('#meter-type').val() == 'single') {
+    var energyTotal = getValueAsFloat('#single-total');
+  } else {
+    var energyTotal = getValueAsFloat('#e7-meter-day-total') + getValueAsFloat('#e7-meter-night-total');
+  }
 
+  var standingTotal = getValueAsFloat('#standing-charge-calculated');
+  var grandTotal = standingTotal + energyTotal;
+  $('#grand-total').val(grandTotal.toFixed(2));
 }
 
 function updateStandingCharge() {
+
   if(!validateDates()) {
     return false;
-  } else {
-    $('#number-of-days').val(diffDates(parseDate($('#start-date').val()),parseDate($('#end-date').val())));
   }
 
-  getValueAsFloat('#daily-standing-charge');
+  var numberOfDays = diffDates(parseDate($('#start-date').val()),parseDate($('#end-date').val()));
+  $('#number-of-days').val(numberOfDays);
 
+  var standingCharge = getValueAsFloat('#daily-standing-charge');
+  var calculated = numberOfDays*standingCharge;
+  $('#standing-charge-calculated').val(calculated.toFixed(2));
+  updateTotals();
 }
 
 function validateDates() {

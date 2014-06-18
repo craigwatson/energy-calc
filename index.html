@@ -5,6 +5,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/datepicker.js"></script>
+    <script type="text/javascript" src="js/calc-functions.js"></script>
     <script type="text/javascript" src="js/calc.js"></script>
 
     <link rel="stylesheet" href="css/pure-min.css" />
@@ -32,6 +33,7 @@
                 <option value="e7">Economy 7 (Dual Meter)</option>
               </select>
             </div>
+          <div id="meter-type-feedback" class="pure-u-1-1 info"></div>
           </fieldset>
 
           <fieldset class="single-field">
@@ -86,7 +88,7 @@
           <legend>Standing Charge Calculations</legend>
             <div class="pure-control-group">
               <label for="e7-night-start-reading">Start Date</label>
-              <input type="text" class="pure-input-rounded datepicker" id="start-date" />
+              <input type="text" class="pure-input-rounded datepicker" id="start-date" required/>
             </div>
             <div class="pure-control-group">
               <label for="e7-night-end-reading">End Date</label>
@@ -105,24 +107,32 @@
         <fieldset id="calculations-fields">
           <legend>Totals</legend>
           <div class="pure-control-group">
-            <label for="standing-charge-calculated">Standing Charge</label>
-            <input type="text" placeholder="&pound;0.00" id="standing-charge-calculated" readonly />
+            <label for="number-of-days">Number of Days</label>
+            <input type="text" placeholder="0" id="number-of-days" readonly />
           </div>
-          <div class="pure-control-group" id="single-meter-total">
+          <div class="pure-control-group">
+            <label for="standing-charge-calculated">Standing Charge</label>
+            <input type="text" placeholder="0.00" id="standing-charge-calculated" readonly />
+          </div>
+          <div class="pure-control-group single-field" id="single-meter-total">
+            <label for="single-meter-units">Single Meter Units</label>
+            <input type="text" placeholder="0" id="ssingle-meter-units" readonly />
+          </div>
+          <div class="pure-control-group single-field" id="single-meter-total">
             <label for="single-meter-total">Single Meter Energy Charges</label>
-            <input type="text" placeholder="&pound;0.00" id="single-total" readonly />
+            <input type="text" placeholder="0.00" id="single-total" readonly />
           </div>
           <div class="pure-control-group e7-field">
             <label for="e7-meter-day-total">Day Energy Charges</label>
-            <input type="text" placeholder="&pound;0.00" id="e7-meter-day-total" readonly />
+            <input type="text" placeholder="0.00" id="e7-meter-day-total" readonly />
           </div>
           <div class="pure-control-group e7-field">
             <label for="e7-meter-night-total">Night Energy Charges</label>
-            <input type="text" placeholder="&pound;0.00" id="e7-meter-night-total" readonly />
+            <input type="text" placeholder="0.00" id="e7-meter-night-total" readonly />
           </div>
           <div class="pure-control-group">
             <label for="grand-total">Grand Total</label>
-            <input type="text" placeholder="&pound;0.00" id="grand-total" readonly />
+            <input type="text" placeholder="0.00" id="grand-total" readonly />
           </div>
         </fieldset>
       </div></div>

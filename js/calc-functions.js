@@ -69,7 +69,7 @@ function diffDates(date1,date2) {
   var date1Milliseconds = date1.getTime();
   var date2Milliseconds = date2.getTime();
   var diff = date2Milliseconds - date1Milliseconds;
-  return Math.round(diff/86400000);
+  return (Math.round(diff/86400000))+1;
 }
 
 /* Returns a specified form field value as a Float */

@@ -24,8 +24,18 @@ function updateTotals() {
     var energyTotal = getValueAsFloat('#e7-day-total') + getValueAsFloat('#e7-night-total');
   }
   var standingTotal = getValueAsFloat('#standing-charge-calculated');
-  var grandTotal = standingTotal + energyTotal;
+  var subTotal = standingTotal + energyTotal;
+  var vat = subTotal*0.05;
+  var grandTotal = subTotal + vat;
+  $('#sub-total').val(subTotal.toFixed(2));
+  $('#vat').val(vat.toFixed(2))
   $('#grand-total').val(grandTotal.toFixed(2));
+
+  var numberOfDays = getValueAsFloat('#number-of-days');
+  if (numberOfDays > 0) {
+    var dailyAverage = grandTotal/numberOfDays;
+    $('#total-average').val(dailyAverage.toFixed(2));
+  }
 }
 
 function updateStandingCharge() {

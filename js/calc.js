@@ -15,6 +15,11 @@ $(function() {
   $('.meter-update').change(validateMeterReadings);
   $('#standing-charge-calculated').change(updateTotals);
   $('#meter-type').change(meterToggle);
+
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'js/ga.js';
+  document.body.appendChild(script);
 });
 
 function updateTotals() {

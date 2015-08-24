@@ -49,6 +49,20 @@ function meterToggle() {
   }
 }
 
+/* Toggles display of Gas elements */
+function fuelToggle() {
+  var isChecked = document.querySelector('.js-switch').checked;
+  if (isChecked) {
+    $('.gas-field').show();
+    $('.gas-standing-charge').show();
+    $('.gas-charges').show();
+  } else {
+    $('.gas-field').hide();
+    $('.gas-standing-charge').hide();
+    $('.gas-charges').hide();
+  }
+}
+
 /* Splits a String DD/MM/YYYY date into a date object */
 function parseDate(theDate) {
   var paramDate = theDate.split('/');

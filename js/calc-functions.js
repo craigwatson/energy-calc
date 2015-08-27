@@ -33,6 +33,7 @@ function validateData(startValue,endValue,feedbackField,errorText,errorResetFiel
     $(feedbackField).hide();
     $(feedbackField).removeClass('green');
     $(feedbackField).removeClass('red');
+    $(feedbackField).html('');
     return true;
   }
 }
@@ -40,10 +41,12 @@ function validateData(startValue,endValue,feedbackField,errorText,errorResetFiel
 /* Toggles display of Economy7/Single meter elements */
 function meterToggle() {
   updateTotals();
-  if ($('#meter-type').val() == 'e7') {
+  validateMeterReadings();
+
+  if (document.querySelector('#e7-meter').checked) {
     $('.e7-field').show();
     $('.single-field').hide();
-  } else if($('#meter-type').val() == 'single'){
+  } else {
     $('.e7-field').hide();
     $('.single-field').show();
   }
@@ -51,15 +54,12 @@ function meterToggle() {
 
 /* Toggles display of Gas elements */
 function fuelToggle() {
-  var isChecked = document.querySelector('.js-switch').checked;
-  if (isChecked) {
+  updateTotals();
+  validateMeterReadings();
+  if (document.querySelector('#dual-fuel').checked) {
     $('.gas-field').show();
-    $('.gas-standing-charge').show();
-    $('.gas-charges').show();
   } else {
     $('.gas-field').hide();
-    $('.gas-standing-charge').hide();
-    $('.gas-charges').hide();
   }
 }
 

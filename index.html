@@ -26,26 +26,18 @@
       </div>
 
       <div class="pure-u-1-3"><div class="pad">
-
           <fieldset id="meter-type-fields">
             <legend>Meter Types</legend>
-
-             <div class="pure-control-group">
-               <label for="meter-type">Electricity Meter Type</label>
-               <select id="meter-type" class="meter-update">
-                 <option value="single">Single Meter</option>
-                 <option value="e7">Economy 7</option>
-               </select>
-             </div>
-
-             <div class="pure-control-group">
-               <label for="energy-type">Dual Fuel</label>
-               <input type="checkbox" class="js-switch" id="dual-fuel" />
-             </div>
-
-             <div id="meter-type-feedback" class="pure-u-1-1 info"></div>
+            <div class="pure-control-group">
+              <label for="e7-meter">Economy 7</label>
+              <input type="checkbox" class="js-switch" id="e7-meter" />
+            </div>
+            <div class="pure-control-group">
+              <label for="energy-type">Dual Fuel</label>
+              <input type="checkbox" class="js-switch" id="dual-fuel" />
+            </div>
+            <div id="meter-type-feedback" class="pure-u-1-1 info"></div>
           </fieldset>
-
           <fieldset class="single-field">
             <legend>Single Electricity Meter Readings</legend>
             <div class="pure-control-group">
@@ -61,7 +53,6 @@
               <input type="text" class="meter-update pure-input-rounded" id="single-unit-price" />
             </div>
           </fieldset>
-
           <fieldset class="e7-field">
             <legend>Economy 7 Electricity Meter Readings</legend>
             <div class="pure-control-group">
@@ -90,27 +81,9 @@
               <input type="text" class="meter-update pure-input-rounded" id="e7-night-unit-price" />
             </div>
           </fieldset>
-
-          <fieldset class="gas-field">
-            <legend>Gas Meter Reading</legend>
-            <div class="pure-control-group">
-              <label for="single-start-reading">Start</label>
-              <input type="text" class="meter-update pure-input-rounded" id="gas-start-reading" />
-            </div>
-            <div class="pure-control-group">
-              <label for="single-end-reading">End</label>
-              <input type="text" class="meter-update pure-input-rounded" id="gas-end-reading" />
-            </div>
-            <div class="pure-control-group">
-              <label for="single-unit-price">Unit Rate (pence)</label>
-              <input type="text" class="meter-update pure-input-rounded" id="gas-unit-price" />
-            </div>
-          </fieldset>
-
           <div id="single-feedback" class="pure-u-1-1 info"></div>
           <div id="e7-day-feedback" class="pure-u-1-1 info"></div>
           <div id="e7-night-feedback" class="pure-u-1-1 info"></div>
-          <div id="gas-feedback" class="pure-u-1-1 info"></div>
       </div></div>
 
       <div class="pure-u-1-3"><div class="pad">
@@ -128,11 +101,27 @@
               <label for="daily-standing-charge"> Charge (pence)</label>
               <input type="text" placeholder="0" class="sc-update pure-input-rounded" id="daily-standing-charge" />
             </div>
-            <div class="pure-control-group gas-standing-charge">
+            <div class="pure-control-group gas-field">
               <label for="gas-standing-charge">Gas Charge (pence)</label>
               <input type="text" placeholder="0" class="sc-update pure-input-rounded" id="gas-standing-charge" />
             </div>
+            <fieldset class="gas-field">
+              <legend>Gas Meter Reading</legend>
+              <div class="pure-control-group">
+                <label for="single-start-reading">Start</label>
+                <input type="text" class="meter-update pure-input-rounded" id="gas-start-reading" />
+              </div>
+              <div class="pure-control-group">
+                <label for="single-end-reading">End</label>
+                <input type="text" class="meter-update pure-input-rounded" id="gas-end-reading" />
+              </div>
+              <div class="pure-control-group">
+                <label for="single-unit-price">Unit Rate (pence)</label>
+                <input type="text" class="meter-update pure-input-rounded" id="gas-unit-price" />
+              </div>
+            </fieldset>
             <div id="date-feedback" class="pure-u-1-1 info"></div>
+            <div id="gas-feedback" class="pure-u-1-1 info"></div>
           </fieldset>
       </div></div>
 
@@ -147,7 +136,7 @@
             <label for="standing-charge-calculated">Standing Charge</label>
             <input type="text" placeholder="0.00" id="standing-charge-calculated" readonly />
           </div>
-          <div class="pure-control-group gas-standing-charge">
+          <div class="pure-control-group gas-field">
             <label for="standing-charge-calculated">Gas Standing Charge</label>
             <input type="text" placeholder="0.00" id="gas-standing-charge-calculated" readonly />
           </div>
@@ -178,12 +167,12 @@
             <label for="e7-meter-night-total">Night Energy Charges</label>
             <input type="text" placeholder="0.00" id="e7-night-total" readonly />
           </div>
-          <hr class="gas-charges" />
-          <div class="pure-control-group e7-field gas-charges">
+          <hr class="gas-field" />
+          <div class="pure-control-group gas-field">
             <label for="gas-units">Gas Units</label>
             <input type="text" placeholder="0.00" id="gas-units" readonly />
           </div>
-          <div class="pure-control-group e7-field gas-charges">
+          <div class="pure-control-group gas-field">
             <label for="gas-total">Gas Energy Charges</label>
             <input type="text" placeholder="0.00" id="gas-total" readonly />
           </div>
@@ -210,8 +199,8 @@
     </div></form>
 
     <div class="footer">
-        <p><a href="">Energy calculator</a> built using the <a href="http://purecss.io/">Pure CSS Framework</a> and <a href="http://getbootstrap.com/javascript/">Bootstrap JavaScript Library</a></p>
-        <p>&copy; 2014 <a href="http://www.cwatson.org">Craig Watson</a>, distributed under the <a href="LICENSE.txt">GNU General Public License v3</a><p>
+        <p><a href="https://github.com/craigwatson/energy-calc">Energy calculator</a> built using the <a href="http://purecss.io/">Pure CSS Framework</a> and <a href="http://getbootstrap.com/javascript/">Bootstrap JavaScript Library</a></p>
+        <p>&copy; 2014-2015 <a href="http://www.cwatson.org">Craig Watson</a>, distributed under the <a href="LICENSE.txt">GNU General Public License v3</a><p>
     </div>
   </body>
 </html>

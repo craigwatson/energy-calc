@@ -1,12 +1,10 @@
 /** Main Function Hooks **/
 $(function() {
-  var elem = document.querySelector('.js-switch');
-  var init = new Switchery(elem, {size: 'small'});
+  var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+  elems.forEach(function(html) { var switchery = new Switchery(html, { size: 'small' });});
 
   $('.e7-field').hide();
   $('.gas-field').hide();
-  $('.gas-standing-charge').hide();
-  $('.gas-charges').hide();
   $('.single-field').show();
   $('.info').hide();
   $('.datepicker').datepicker({
@@ -22,7 +20,7 @@ $(function() {
   $('.sc-update').change(updateStandingCharge);
   $('.meter-update').change(validateMeterReadings);
   $('#standing-charge-calculated').change(updateTotals);
-  $('#meter-type').change(meterToggle);
+  $('#e7-meter').change(meterToggle);
 
   var script = document.createElement('script');
   script.type = 'text/javascript';
@@ -31,17 +29,18 @@ $(function() {
 });
 
 function updateTotals() {
-  if ($('#meter-type').val() == 'single') {
-    var energyTotal = getValueAsFloat('#single-total');
-  } else {
+
+  if (document.querySelector('#e7-meter').checked) {
     var energyTotal = getValueAsFloat('#e7-day-total') + getValueAsFloat('#e7-night-total');
+  } else {
+    var energyTotal = getValueAsFloat('#single-total');
   }
 
   var standingTotal = getValueAsFloat('#standing-charge-calculated');
 
-  if(document.querySelector('.js-switch').checked){
+  if(document.querySelector('#dual-fuel').checked){
     var gasStandingTotal = getValueAsFloat('#gas-standing-charge-calculated');
-    var gasTotal = getValueAsFloat('#gas-total'); 
+    var gasTotal = getValueAsFloat('#gas-total');
     var subTotal = standingTotal + gasStandingTotal + energyTotal + gasTotal;
   } else {
     var subTotal = standingTotal + energyTotal;
@@ -75,7 +74,7 @@ function updateStandingCharge() {
   var calculated = ((numberOfDays*standingCharge)/100);
   $('#number-of-days').val(numberOfDays);
 
-  if(document.querySelector('.js-switch').checked){
+  if(document.querySelector('#dual-fuel').checked){
     var gasCalculated = ((numberOfDays*gasStandingCharge)/100);
     $('#gas-standing-charge-calculated').val(gasCalculated.toFixed(2));
   }
@@ -85,14 +84,13 @@ function updateStandingCharge() {
 }
 
 function validateMeterReadings() {
-  if ($('#meter-type').val() == 'single') {
-    validateReadings('single','The start meter reading is greater than the end meter reading!');
-  } else {
+  if (document.querySelector('#e7-meter').checked) {
     validateReadings('e7-day','The start meter reading is greater than the end meter reading!');
     validateReadings('e7-night','The start meter reading is greater than the end meter reading!');
+  } else {
+    validateReadings('single','The start meter reading is greater than the end meter reading!');
   }
-
-  if(document.querySelector('.js-switch').checked) {
+  if(document.querySelector('#dual-fuel').checked) {
     validateReadings('gas','The start meter reading is greater than the end meter reading!');
   }
 }

@@ -119,6 +119,15 @@
                 <label for="single-unit-price">Unit Rate (pence)</label>
                 <input type="text" class="meter-update pure-input-rounded" id="gas-unit-price" />
               </div>
+              <hr class="gas-field" />
+              <div class="pure-control-group">
+                <label for="gas-calorific-value">Calorific Value</label>
+                <input type="text" class="meter-update pure-input-rounded" id="gas-calorific-value" value="39.2" />
+              </div>
+              <div class="pure-control-group">
+                <label for="gas-volume-correction">Volume Correction</label>
+                <input type="text" class="meter-update pure-input-rounded" id="gas-volume-correction" value="1.02264" />
+              </div>
             </fieldset>
             <div id="date-feedback" class="pure-u-1-1 info"></div>
             <div id="gas-feedback" class="pure-u-1-1 info"></div>
@@ -169,7 +178,7 @@
           </div>
           <hr class="gas-field" />
           <div class="pure-control-group gas-field">
-            <label for="gas-units">Gas Units</label>
+            <label for="gas-units">Gas kWh</label>
             <input type="text" placeholder="0.00" id="gas-units" readonly />
           </div>
           <div class="pure-control-group gas-field">

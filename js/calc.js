@@ -21,11 +21,6 @@ $(function() {
   $('.meter-update').change(validateMeterReadings);
   $('#standing-charge-calculated').change(updateTotals);
   $('#e7-meter').change(meterToggle);
-
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'js/ga.js';
-  document.body.appendChild(script);
 });
 
 function updateTotals() {
@@ -91,6 +86,6 @@ function validateMeterReadings() {
     validateReadings('single','The start meter reading is greater than the end meter reading!');
   }
   if(document.querySelector('#dual-fuel').checked) {
-    validateReadings('gas','The start meter reading is greater than the end meter reading!');
+    validateReadings('gas','The start meter reading is greater than the end meter reading!',true);
   }
 }

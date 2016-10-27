@@ -1,22 +1,28 @@
-function validateReadings(fieldPrefix,errorText) {
+function validateReadings(fieldPrefix,errorText,gasRead = false) {
   var startReading = $('#' + fieldPrefix + '-start-reading').val();
   var endReading = $('#' + fieldPrefix + '-end-reading').val();
   var unitPrice = $('#' + fieldPrefix + '-unit-price').val();
-  var unitsUsed = endReading - startReading;
-  var totalCharge = ((unitsUsed*unitPrice)/100);
+
+  if(gasRead == true) {
+    var calorificValue = $('#gas-calorific-value').val();
+    var volumeCorrection = $('#gas-volume-correction').val();
+    var unitsUsed = (((endReading - startReading)*calorificValue*volumeCorrection)/3.6);
+  } else {
+    var unitsUsed = endReading - startReading;
+  }
 
   if (!validateData(startReading,endReading,'#' + fieldPrefix + '-feedback',errorText,'#' + fieldPrefix + '-total')) {
     return false;
   }
 
-  $('#' + fieldPrefix + '-units').val(unitsUsed);
+  var totalCharge = ((unitsUsed*unitPrice)/100);
+  $('#' + fieldPrefix + '-units').val(unitsUsed.toFixed(2));
   $('#' + fieldPrefix + '-total').val(totalCharge.toFixed(2));
   updateTotals();
 }
 
 /* Validates two data points, and updates feedback field and resets a field if not valid */
 function validateData(startValue,endValue,feedbackField,errorText,errorResetField) {
-  /*alert (startValue + ' ' + endValue);*/
   if ((startValue == 0) || (endValue == 0)) {
     $(feedbackField).hide();
     $(feedbackField).removeClass('green');
